@@ -19,7 +19,7 @@ The project utilizes a dataset specifically designed for student enrollment pred
 
 ## Methodology
 
-The project followed a structured machine learning pipeline:
+The following structured machine learning pipeline was employed:
 
 ### 1. Data Understanding and Exploration
 * Used Pandas' `.info()` and `.describe()` to check for missing values, data types, distributions and potential outliers.
@@ -28,11 +28,11 @@ The project followed a structured machine learning pipeline:
 
 ### 2. Data Preprocessing
 * **Data Splitting:** The training set was divided into a train set and a validation set using a 70/30 split.
-* **Outlier Treatment:** Applied Winsorization to most numerical variables to restrict extreme values, except for "Financial Background" where a direct limit was applied due to its strong correlation with the outcome.
-* **One-Hot Encoding:** Applied to four categorical variables (Program, Student Gender, School of Origin, Favorite Study Element) to prevent the model from inferring ordinal relationships.
+* **Outlier Treatment:** Applied Winsorization to most numerical variables to restrict extreme values, except for `Financial Background` where a direct limit was applied due to its strong correlation with the outcome.
+* **One-Hot Encoding:** Applied to four categorical variables (`Program`, `Student Gender`, `School of Origin`, `Favorite Study Element`) to prevent the model from inferring ordinal relationships.
 * **Missing Value Imputation:**
-    * Used KNN Imputer (with 7 neighbors) for "Experience Level."
-    * "School Dormitory" was dropped due to 79% missing data and minimal correlation with the outcome.
+    * Used KNN Imputer (with 7 neighbors) for `Experience Level`.
+    * `School Dormitory` was dropped due to 79% missing data and minimal correlation with the outcome.
 * **Scaling:** Tested Min Max Scaler, Standard Scaler and Robust Scaler, with Robust Scaler being chosen for its performance.
 
 ### 3. Feature Selection
@@ -42,7 +42,7 @@ The project followed a structured machine learning pipeline:
 ### 4. Model Development and Selection
 * **Model Type:** Focused on Boosting Ensemble Classifiers, specifically `AdaBoostClassifier()`, using a `DecisionTreeClassifier` as the base estimator.
 * **Hyperparameter Tuning:** `GridSearch` was extensively used to find optimal hyperparameter combinations for various models.
-* **Best Model:** The `AdaBoostClassifier()` with a `DecisionTreeClassifier` (max_depth=1, random_state=15) as the estimator, a learning rate of 0.8, and 100 estimators, was selected. It used the 'SAMME' algorithm.
+* **Best Model:** The `AdaBoostClassifier()` with a `DecisionTreeClassifier` (max_depth=1, random_state=15) as the estimator, a learning rate of 0.8 and 100 estimators, was selected. It used the 'SAMME' algorithm.
 * **Evaluation:** Models were evaluated based on F1 and Accuracy scores.
 * **Overfitting Control:** The chosen model showed no significant overfitting (less than 1% difference between train and validation F1 scores).
 
